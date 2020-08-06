@@ -24,4 +24,8 @@ public class Constants {
     public enum Translation {
         FORWARD, BACKWARD
     }
+
+    public enum MapSymbols{
+        E, B, U
+    }
 }

@@ -18,8 +18,8 @@ public abstract class Screen extends JPanel implements KeyHandler {
         Launcher.window.setGamePanel(this);
     }
 
-    @Override
-    public virtual void OnKeyPress(KeyStroke e){};
+//    @Override
+//    public virtual void OnKeyPress(KeyStroke e){};
 
     protected abstract void setBackgroundImage();
 
@@ -31,6 +31,11 @@ public abstract class Screen extends JPanel implements KeyHandler {
     public void paintComponent(Graphics graphic){
         super.paintComponent(graphic);
         graphic.drawImage(background, 0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, this);
+    }
+
+    @Override
+    public void onKeyPress(KeyStroke x){
+        System.out.println(x);
     }
 
 }

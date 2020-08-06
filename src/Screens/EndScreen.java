@@ -30,7 +30,7 @@ public class EndScreen extends Screen {
     }
 
     private void setGameOverMessage(){
-        gameOverMessage.setFont(f);
+        //gameOverMessage.setFont(f);
         gameOverMessage.setText(Constants.GAME_OVER_MESSAGE);
         gameOverMessage.setAlignmentX(.5f);
         gameOverMessage.setAlignmentY(.5f);

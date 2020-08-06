@@ -33,7 +33,7 @@ public class Tank extends GameObject implements KeyHandler {
         this.playerId = playerId;
         this.inputMap = new InputMap();
         this.position = new Position(0,0);
-        this.transform = new Transform();
+        this.transform = new Transform(0);
 
         if (playerId == 1) {
             inputMap.setKey(Constants.Keys.LEFT, 'A');
@@ -107,20 +107,30 @@ public class Tank extends GameObject implements KeyHandler {
 
     @Override
     public void update() {
-        if (this.transform.getRotations().size() > 0)
-        {
-            Rotation rot = this.transform.getRotations().getFirst();
-            if (rot != null)
-            {
-                this.
-            }
-        }
+
     }
 
     @Override
-	public void draw(Graphics g) {
-        
-       g.drawImage(this.tankImage, , observer);
+    public void draw(Graphics g) {
+
     }
+
+//    @Override
+//    public void update() {
+//        if (this.transform.getRotations().size() > 0)
+//        {
+//            Rotation rot = this.transform.getRotations().getFirst();
+//            if (rot != null)
+//            {
+//                this.
+//            }
+//        }
+//    }
+//
+//    @Override
+//	public void draw(Graphics g) {
+//
+//       g.drawImage(this.tankImage, , observer);
+//    }
 }
         

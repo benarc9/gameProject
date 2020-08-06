@@ -29,5 +29,9 @@ public class Position {
     public void sety(float y){
         this.y = y;
     }
+
+    public int getXInt(){ return (int)this.x; }
+
+    public int getYInt(){ return (int)this.y; }
 }
 
