@@ -8,9 +8,7 @@ import Util.Position;
 import Util.Rotation;
 import Util.Transform;
 
-import java.util.HashMap;
 import java.util.Objects;
-import java.awt.Image;
 import java.io.IOException;
 import java.awt.Graphics;
 
@@ -20,12 +18,17 @@ import javax.swing.KeyStroke;
 
 import Screens.StartScreen;
 
+import java.awt.image.*;
+
 import static javax.imageio.ImageIO.read;
+
+import java.awt.Graphics2D;
 
 public class Tank extends GameObject implements KeyHandler {
     private int playerId;
     private InputMap inputMap;
-    private Image tankImage;
+    private BufferedImage tankImage;
+    private Graphics2D graphic;
     private Position position;
     private Transform transform;
 
@@ -33,7 +36,7 @@ public class Tank extends GameObject implements KeyHandler {
         this.playerId = playerId;
         this.inputMap = new InputMap();
         this.position = new Position(0,0);
-        this.transform = new Transform();
+        
 
         if (playerId == 1) {
             inputMap.setKey(Constants.Keys.LEFT, 'A');
@@ -41,12 +44,16 @@ public class Tank extends GameObject implements KeyHandler {
             inputMap.setKey(Constants.Keys.FORWARD, 'W');
             inputMap.setKey(Constants.Keys.BACKWARD, 'S');
             inputMap.setKey(Constants.Keys.FIRE, 'G');
+
+            this.transform = new Transform(0);
         } else {
             inputMap.setKey(Constants.Keys.LEFT, '4');
             inputMap.setKey(Constants.Keys.RIGHT, '6');
             inputMap.setKey(Constants.Keys.FORWARD, '8');
             inputMap.setKey(Constants.Keys.BACKWARD, '2');
             inputMap.setKey(Constants.Keys.FIRE, 'L');
+
+            this.transform = new Transform(180);
         }
 
         try {
@@ -54,6 +61,8 @@ public class Tank extends GameObject implements KeyHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        graphic = this.tankImage.createGraphics();
     }
 
     @Override
@@ -107,20 +116,12 @@ public class Tank extends GameObject implements KeyHandler {
 
     @Override
     public void update() {
-        if (this.transform.getRotations().size() > 0)
-        {
-            Rotation rot = this.transform.getRotations().getFirst();
-            if (rot != null)
-            {
-                this.
-            }
-        }
+        
     }
 
     @Override
 	public void draw(Graphics g) {
-        
-       g.drawImage(this.tankImage, , observer);
+		g.drawImage(this.tankImage, position.getXInt(), position.getYInt(), observer);
     }
 }
         

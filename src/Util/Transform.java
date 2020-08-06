@@ -44,4 +44,8 @@ public class Transform {
     public AffineTransform getRotationTransform(){
         return this.rotateTransform;
     }
+
+    public AffineTransform getIdentityTransform(){
+        return this.identity;
+    }
 }
