@@ -33,4 +33,10 @@ public class StartScreen extends Screen
     public void onKeyPress(KeyStroke e) {
         Launcher.window.setGamePanel(new GameScreen());
     }
+
+    @Override
+    public void onKeyPress(Character e) {
+        // TODO Auto-generated method stub
+
+    }
 }

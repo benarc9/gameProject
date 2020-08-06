@@ -2,7 +2,11 @@ package GameObjects;
 
 import java.awt.*;
 
-public class BreakableWall extends Walls {
+public class BreakableWall extends Wall {
+
+    public void breakWall(){
+        // Change image to broken wall image when wall is broken?
+    }
 
     @Override
     public void update() {
@@ -11,6 +15,6 @@ public class BreakableWall extends Walls {
 
     @Override
     public void draw(Graphics g) {
-
+        g.drawImage(this.wallImage, position.getXInt(), position.getYInt(), null);
     }
 }
