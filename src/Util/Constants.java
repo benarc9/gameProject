@@ -11,4 +11,12 @@ public class Constants {
         StartScreen, EndScreen, GameScreen
     }
 
+    public static final String GAME_OVER_MESSAGE = "Game Over!";
+
+    public enum Keys {
+        LEFT, RIGHT, FORWARD, BACKWARD, FIRE, PAUSE, UNDEFINED
+    }
+
+    public static final TANK_IMAGE_PATH = 
+
 }

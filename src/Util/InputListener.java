@@ -16,11 +16,10 @@ public class InputListener implements KeyListener, WindowListener{
     public void keyPressed(KeyEvent e) {
         switch(this.screen.getScreenType()){
             case StartScreen:
-
                 break;
             case EndScreen:
                 break;
-            case GameWindow:
+            case GameScreen:
                 break;
         }
     }

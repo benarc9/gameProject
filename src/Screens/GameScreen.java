@@ -6,12 +6,18 @@ import Util.Screen;
 import javax.swing.*;
 
 public class GameScreen extends Screen {
-    public GameScreen(Constants.Screens screenType) {
-        super(screenType);
+    private static final long serialVersionUID = -8660620098344586762L;
+
+    public GameScreen() {
+        super(Constants.Screens.GameScreen);
     }
 
     @Override
     protected void setBackgroundImage() {
+
+    }
+
+    public void gameOver(){
 
     }
 

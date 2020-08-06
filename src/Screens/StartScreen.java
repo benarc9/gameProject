@@ -11,7 +11,10 @@ import java.util.Objects;
 import static javax.imageio.ImageIO.read;
 
 
-public class StartScreen extends Screen {
+public class StartScreen extends Screen 
+{
+
+    private static final long serialVersionUID = 3718213488354262104L;
 
     public StartScreen() {
         super(Constants.Screens.StartScreen);
@@ -28,6 +31,6 @@ public class StartScreen extends Screen {
 
     @Override
     public void onKeyPress(KeyStroke e) {
-        Launcher.window.setGamePanel(new GameScreen(Constants.Screens.GameScreen));
+        Launcher.window.setGamePanel(new GameScreen());
     }
 }

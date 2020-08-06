@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Screen extends JPanel implements KeyHandler {
+
+    private static final long serialVersionUID = 1867898199396234327L;
     protected Image background;
     private Constants.Screens screenType;
 
@@ -15,6 +17,9 @@ public abstract class Screen extends JPanel implements KeyHandler {
         background.getScaledInstance(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, BufferedImage.SCALE_SMOOTH);
         Launcher.window.setGamePanel(this);
     }
+
+    @Override
+    public virtual void OnKeyPress(KeyStroke e){};
 
     protected abstract void setBackgroundImage();
 
