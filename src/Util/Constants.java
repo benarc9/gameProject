@@ -17,6 +17,11 @@ public class Constants {
         LEFT, RIGHT, FORWARD, BACKWARD, FIRE, PAUSE, UNDEFINED
     }
 
-    public static final TANK_IMAGE_PATH = 
+    public enum Rotation {
+        LEFT, RIGHT
+    }
 
+    public enum Translation {
+        FORWARD, BACKWARD
+    }
 }
