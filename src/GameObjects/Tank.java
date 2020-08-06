@@ -115,6 +115,12 @@ public class Tank extends GameObject implements KeyHandler {
 
     }
 
+    @Override
+    public void onKeyPress(Character e) {
+        // TODO Auto-generated method stub
+
+    }
+
 //    @Override
 //    public void update() {
 //        if (this.transform.getRotations().size() > 0)

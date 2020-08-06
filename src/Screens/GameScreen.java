@@ -23,6 +23,12 @@ public class GameScreen extends Screen {
 
     @Override
     public void onKeyPress(KeyStroke e) {
+        
+    }
+
+    @Override
+    public void onKeyPress(Character e) {
+        // TODO Auto-generated method stub
 
     }
 }
