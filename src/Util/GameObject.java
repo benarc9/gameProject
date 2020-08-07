@@ -19,4 +19,9 @@ public abstract class GameObject {
 
     public abstract void update();
     public abstract void draw(Graphics g);
+
+    public GameObject(int x, int y){
+        this.position.setX(x);
+        this.position.sety(y);
+    };
 }

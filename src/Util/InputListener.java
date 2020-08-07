@@ -1,5 +1,6 @@
 package Util;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -16,6 +17,7 @@ public class InputListener implements KeyListener, WindowListener{
     public void keyPressed(KeyEvent e) {
         switch(this.screen.getScreenType()){
             case StartScreen:
+                screen.onKeyPress(KeyStroke.getKeyStroke(e.getKeyChar()));
                 break;
             case EndScreen:
                 break;

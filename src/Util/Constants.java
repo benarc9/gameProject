@@ -1,5 +1,7 @@
 package Util;
 
+import java.awt.*;
+
 public class Constants {
 
     public static final int WINDOW_WIDTH = 1024;
@@ -24,4 +26,10 @@ public class Constants {
     public enum Translation {
         FORWARD, BACKWARD
     }
+
+    public enum MapSymbols{
+        E, B, U
+    }
+
+    public static final Font GAME_OVER_MESSAGE_FONT = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts()[0];
 }
