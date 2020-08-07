@@ -28,8 +28,27 @@ public class Constants {
     }
 
     public enum MapSymbols{
-        E, B, U
+        E, B, U;
+
+        public static MapSymbols convert(char symbol)
+        {
+            if (symbol == 'E')
+            {
+                return MapSymbols.E;
+            }
+            else if (symbol == 'U')
+            {
+                return MapSymbols.U;
+            }
+            else
+            {
+                return MapSymbols.B;
+            }
+        }
     }
+
+    public static final int TILE_WIDTH = 32;
+    public static final int TILE_HEIGHT = 32;
 
     public static final Font GAME_OVER_MESSAGE_FONT = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts()[0];
 }

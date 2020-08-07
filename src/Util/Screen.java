@@ -1,10 +1,13 @@
 package Util;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Image;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-public abstract class Screen extends JPanel implements KeyHandler {
+public abstract class Screen extends JPanel implements KeyListener {
 
     private static final long serialVersionUID = 1867898199396234327L;
     protected Image background;
@@ -13,29 +16,30 @@ public abstract class Screen extends JPanel implements KeyHandler {
     public Screen(Constants.Screens screenType) {
         this.setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         this.screenType = screenType;
-        setBackgroundImage();
-        background.getScaledInstance(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, BufferedImage.SCALE_SMOOTH);
-        Launcher.window.setGamePanel(this);
     }
 
-//    @Override
-//    public virtual void OnKeyPress(KeyStroke e){};
-
-    protected abstract void setBackgroundImage();
-
-    public Constants.Screens getScreenType() {
-        return screenType;
+    public void setBackground(BufferedImage image){
+        this.background = image.getScaledInstance(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, BufferedImage.SCALE_SMOOTH);
     }
 
     @Override
     public void paintComponent(Graphics graphic){
         super.paintComponent(graphic);
-        graphic.drawImage(background, 0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, this);
+        graphic.drawImage(background, 0, 0,this);
     }
 
     @Override
-    public void onKeyPress(KeyStroke x){
-        System.out.println(x);
+    public void keyReleased(KeyEvent e) {
+        System.out.println("Key Released Event: " + e.toString());
     }
 
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("Key Pressed Event: " + e.toString());
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        System.out.println("Key Typed Event: " + e.toString());
+    }
 }

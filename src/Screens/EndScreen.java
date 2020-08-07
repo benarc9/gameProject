@@ -1,13 +1,13 @@
 package Screens;
 
-import java.awt.Font;
-
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
 import Util.Constants;
 import Util.Launcher;
 import Util.Screen;
+
+import java.awt.event.KeyEvent;
 
 public class EndScreen extends Screen {
     private static final long serialVersionUID = 5222721195904604255L;
@@ -30,22 +30,9 @@ public class EndScreen extends Screen {
     }
 
     @Override
-    public void onKeyPress(KeyStroke e) {
-        if (e != null)
-        {
-            restart();
+    public void keyReleased(KeyEvent e) {
+        if (e != null){
+            Launcher.window.setGamePanel(new StartScreen());
         }
-    }
-
-    @Override
-    protected void setBackgroundImage() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onKeyPress(Character e) {
-        // TODO Auto-generated method stub
-
     }
 }

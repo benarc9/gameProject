@@ -4,39 +4,30 @@ import Util.Constants;
 import Util.Launcher;
 import Util.Screen;
 
-import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Objects;
 
 import static javax.imageio.ImageIO.read;
 
-
-public class StartScreen extends Screen 
-{
-
+public class StartScreen extends Screen {
     private static final long serialVersionUID = 3718213488354262104L;
 
     public StartScreen() {
         super(Constants.Screens.StartScreen);
-    }
-
-    @Override
-    protected void setBackgroundImage() {
         try {
-            background = read(Objects.requireNonNull(StartScreen.class.getClassLoader().getResource("title.png")));
+            BufferedImage image = read(ClassLoader.getSystemResource("resources/title.png"));
+            setBackground(image);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void onKeyPress(KeyStroke e) {
-        Launcher.window.setGamePanel(new GameScreen());
-    }
+    public void keyReleased(KeyEvent e){
+        GameScreen screen = new GameScreen();
+        screen.setGrid(Launcher.game.getMap());
 
-    @Override
-    public void onKeyPress(Character e) {
-        // TODO Auto-generated method stub
-
+        Launcher.window.setGamePanel(screen);
     }
 }

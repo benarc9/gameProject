@@ -8,29 +8,19 @@ import Util.Constants.Translation;
 public class Transform {
     private LinkedList<Rotation> rotations = new LinkedList<>();
     private LinkedList<Translation> translations = new LinkedList<>();
-    private int facingDegree;
-    private int startingDir;
     private AffineTransform rotateTransform = new AffineTransform();
     private AffineTransform identity = new AffineTransform();
 
-    public Transform(int startingDir){
-        this.startingDir = startingDir;
-        this.facingDegree = startingDir;
+    public Transform(){
     }
 
-    public void rotate(Rotation rotation){
-        this.rotations.add(rotation);
-        if (rotation.getRotationDirection() == Constants.Rotation.LEFT){
-            facingDegree--;
-        }
-        else{
-            facingDegree++;
-        }
-    }   
+    public void rotate(){
 
-    public void translate(Translation translation)
+    }
+
+    public void translate()
     {
-        this.translations.add(translation);
+
     }
 
     public LinkedList<Rotation> getRotations(){

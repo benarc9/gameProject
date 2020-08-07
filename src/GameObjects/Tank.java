@@ -3,40 +3,42 @@ package GameObjects;
 import Util.Constants;
 import Util.GameObject;
 import Util.InputMap;
-import Util.KeyHandler;
 import Util.Position;
 import Util.Rotation;
 import Util.Transform;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Objects;
 import java.io.IOException;
-import java.awt.Graphics;
+import java.awt.Graphics;import Util.Constants;
+import Util.GameObject;
+import Util.InputMap;
+import Util.Position;
+import Util.Rotation;
+import Util.Transform;
 
 import java.awt.geom.AffineTransform;
 
-import javax.swing.KeyStroke;
-
 import Screens.StartScreen;
 
+import javax.swing.*;
 import java.awt.image.*;
 
 import static javax.imageio.ImageIO.read;
 
 import java.awt.Graphics2D;
 
-public class Tank extends GameObject implements KeyHandler {
+public class Tank extends GameObject implements KeyListener {
     private int playerId;
     private InputMap inputMap;
     private BufferedImage tankImage;
-    private Graphics2D graphic;
-    private Position position;
-    private Transform transform;
+    private TankPanel tankPanel;
 
     public Tank(int playerId) {
         this.playerId = playerId;
         this.inputMap = new InputMap();
         this.position = new Position(0,0);
-        this.transform = new Transform(0);
 
 
         if (playerId == 1) {
@@ -45,79 +47,49 @@ public class Tank extends GameObject implements KeyHandler {
             inputMap.setKey(Constants.Keys.FORWARD, 'W');
             inputMap.setKey(Constants.Keys.BACKWARD, 'S');
             inputMap.setKey(Constants.Keys.FIRE, 'G');
-
-            this.transform = new Transform(0);
         } else {
             inputMap.setKey(Constants.Keys.LEFT, '4');
             inputMap.setKey(Constants.Keys.RIGHT, '6');
             inputMap.setKey(Constants.Keys.FORWARD, '8');
             inputMap.setKey(Constants.Keys.BACKWARD, '2');
             inputMap.setKey(Constants.Keys.FIRE, 'L');
-
-            this.transform = new Transform(180);
         }
 
         try {
-            this.tankImage = read(Objects.requireNonNull(StartScreen.class.getClassLoader().getResource("tank1.png")));
+            this.tankImage = read(Objects.requireNonNull(StartScreen.class.getClassLoader().getResource("resources/tank1.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        graphic = this.tankImage.createGraphics();
-    }
-
-    @Override
-    public void onKeyPress(KeyStroke e) {
-        Constants.Keys key = inputMap.getKeyName(e.getKeyChar());
-        if (playerId == 1)
-        {
-            switch(key){
-                case LEFT:
-                    rotateLeft();
-                    break;
-
-                case BACKWARD:
-                    break;
-
-                case FORWARD:
-                    break;
-
-                case RIGHT:
-                    rotateRight();
-                    break;
-
-                case FIRE:
-                    break;
-
-                case UNDEFINED:
-                    break;
-
-                case PAUSE:
-                    break;
-
-            }
-        }
-        
     }
 
 
     private void rotateLeft(){
-        this.transform.rotate(
-            new Rotation(
-                new AffineTransform(), 
-                Util.Constants.Rotation.LEFT)
-        );
+        AffineTransform tx = new AffineTransform();
+        tx.rotate(Math.PI/4);
+        tankPanel.setTx(tx);
     }
 
     private void rotateRight(){
-        this.transform.rotate(
-            new Rotation(new AffineTransform(), Util.Constants.Rotation.RIGHT)
-        );
+        AffineTransform tx = new AffineTransform();
+        tx.rotate(Math.PI/4);
+        tankPanel.setTx(tx);
+    }
+
+    private void forward() {
+        AffineTransform tx = new AffineTransform();
+        tankPanel.setTx(tx);
+    }
+
+    private void reverse() {
+
+    }
+
+    private void fire() {
+
     }
 
     @Override
     public void update() {
-
     }
 
     @Override
@@ -126,27 +98,81 @@ public class Tank extends GameObject implements KeyHandler {
     }
 
     @Override
-    public void onKeyPress(Character e) {
-        // TODO Auto-generated method stub
+    public void keyTyped(KeyEvent e) {}
 
+    @Override
+    public void keyPressed(KeyEvent e) { }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (playerId == 1)
+        {
+            switch (e.getKeyChar())
+            {
+                case 'A' -> {
+                    rotateLeft();
+                }
+                case 'D' -> {
+                    rotateRight();
+                }
+                case 'W' -> {
+                    forward();
+                }
+                case 'S' -> {
+                    reverse();
+                }
+                case 'F' -> {
+                    fire();
+                }
+            }
+        }
+        else
+        {
+            switch (e.getKeyChar())
+            {
+                case '4' -> {
+                    rotateLeft();
+                }
+                case '6' -> {
+                    rotateRight();
+                }
+                case '8' -> {
+                    forward();
+                }
+                case '2' -> {
+                    reverse();
+                }
+                case 'L' -> {
+                    fire();
+                }
+            }
+        }
     }
 
-//    @Override
-//    public void update() {
-//        if (this.transform.getRotations().size() > 0)
-//        {
-//            Rotation rot = this.transform.getRotations().getFirst();
-//            if (rot != null)
-//            {
-//                this.
-//            }
-//        }
-//    }
-//
-//    @Override
-//	public void draw(Graphics g) {
-//
-//       g.drawImage(this.tankImage, , observer);
-//    }
+    public  class TankPanel extends JPanel {
+        private  AffineTransform tx = null;
+
+        public void setTx(AffineTransform transform)
+        {
+            this.tx = transform;
+        }
+
+        public void draw(Graphics g)
+        {
+            Graphics2D g2d = (Graphics2D)g.create();
+            if (tx != null)
+            {
+                g2d.setTransform(tx);
+                g2d.dispose();
+            }
+        }
+
+        @Override
+        public void paintComponent(Graphics g)
+        {
+            super.paintComponent(g);
+            draw(g);
+        }
+    }
 }
         

@@ -1,7 +1,10 @@
 package World;
 
+import Util.Constants;
 import Util.GameObject;
 import Util.Position;
+
+import java.awt.*;
 
 public class Tile {
     private Position position;
@@ -13,5 +16,14 @@ public class Tile {
 
     public boolean hasOccupant(){
         return occupant!=null;
+    }
+
+    public void setOccupant(GameObject occupant)
+    {
+        this.occupant = occupant;
+    }
+
+    public GameObject getOccupant() {
+        return this.occupant;
     }
 }

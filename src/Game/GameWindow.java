@@ -13,6 +13,7 @@ public class GameWindow {
 
     private JFrame frame;
     private ArrayList<WindowListener> listeners = new ArrayList<>();
+    private Screen currentScreen = null;
 
     public GameWindow() {
         frame = new JFrame(Constants.WINDOW_TITLE);
@@ -22,27 +23,21 @@ public class GameWindow {
 
     public void setGamePanel(Screen screen){
         frame.setVisible(false);
+        frame.removeKeyListener(this.currentScreen);
+        if (frame.getContentPane().getComponentCount() == 1)
+        {
+            frame.getContentPane().remove(0);
+        }
+        this.currentScreen = screen;
+        frame.addKeyListener(this.currentScreen);
         for(WindowListener listener:listeners){
             listener.OnScreenChange(screen);
         }
-        frame.getContentPane().add(screen, BorderLayout.CENTER);
+        frame.getContentPane().add(this.currentScreen, BorderLayout.CENTER);
         frame.setVisible(true);
-    }
-
-    public Graphics getGraphics(){
-        return frame.getGraphics();
     }
 
     public void setScreenSize(int width, int height){
         frame.setSize(width, height);
     }
-
-    public void addListener(WindowListener listener){
-        listeners.add(listener);
-    }
-
-    public void update(){
-
-    }
-
 }

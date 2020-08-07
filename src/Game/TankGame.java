@@ -1,25 +1,20 @@
 package Game;
 
-import Util.Constants;
-import Util.InputListener;
-import Util.Screen;
+import GameObjects.Tank;
 import World.Map;
-
 import java.io.File;
 
-
 public class TankGame {
-
-    private InputListener input;
-    private Constants.Screens screen;
     private long tick = 0;
-    private Screen sc;
     private Map map;
+    private Tank tankA;
+    private Tank tankB;
 
     public TankGame() {
-        this.input = new InputListener();
-        File mapFile = new File(getClass().getClassLoader().getResource("mapGrid.txt").getFile());
-        this.map = new Map(5, 5, mapFile);
+        File mapFile = new File(getClass().getResource("/resources/mapGrid.txt").getFile());
+        this.map = new Map(17, 13, mapFile);
+        this.tankA = new Tank(1);
+        this.tankB = new Tank(2);
     }
 
     public void run(){
@@ -33,6 +28,20 @@ public class TankGame {
         }catch (InterruptedException in){
             System.out.println(in);
         }
+    }
+
+    public Map getMap() {
+        return this.map;
+    }
+
+    public Tank getTankA()
+    {
+        return tankA;
+    }
+
+    public Tank getTankB()
+    {
+        return tankB;
     }
 
     public void update(){

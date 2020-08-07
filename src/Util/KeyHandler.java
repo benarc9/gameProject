@@ -1,8 +1,9 @@
 package Util;
 
-import javax.swing.*;
+import java.awt.event.KeyEvent;
 
 public interface KeyHandler {
-    void onKeyPress(KeyStroke e);
-    void onKeyPress(Character e);
+    void onKeyPress(KeyEvent event);
+    void onKeyReleased(KeyEvent e);
+    void onKeyTyped(KeyEvent event);
 }
